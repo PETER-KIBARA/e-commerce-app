@@ -20,4 +20,3 @@ E-Commerce app is a design implementaion of [E-commerce App]() designed by [Pete
 
 
 
-<img align="left" src = "https://profile-counter.glitch.me/flutter_ecommerce_app/count.svg" alt ="Loading">
