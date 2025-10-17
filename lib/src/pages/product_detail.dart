@@ -93,10 +93,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
       ),
       child: Icon(icon, color: color, size: size),
     ).ripple(() {
-      if (onPressed != null) {
-        onPressed();
-      }
-    }, borderRadius: BorderRadius.all(Radius.circular(13)));
+      onPressed();
+        }, borderRadius: BorderRadius.all(Radius.circular(13)));
   }
 
   Widget _productImage() {
