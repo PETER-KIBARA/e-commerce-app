@@ -58,8 +58,9 @@ class AppData {
     //     image: 'assets/small_tilt_shoe_2.png',
     //     category: "Trending Now"),
   ];
+  
   static List<Category> categoryList = [
-    Category(),
+    Category(id: 0, name: "All"),
     Category(
         id: 1,
         name: "Sneakers",

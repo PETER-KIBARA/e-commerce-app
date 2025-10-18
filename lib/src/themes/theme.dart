@@ -1,19 +1,28 @@
+// ...existing code...
 import 'package:flutter/material.dart';
 
 import 'light_color.dart';
 
 class AppTheme {
   const AppTheme();
+
   static ThemeData lightTheme = ThemeData(
-      backgroundColor: LightColor.background,
-      primaryColor: LightColor.background,
-      cardTheme: CardTheme(color: LightColor.background),
-      textTheme: TextTheme(bodyText1: TextStyle(color: LightColor.black)),
-      iconTheme: IconThemeData(color: LightColor.iconColor),
-      bottomAppBarColor: LightColor.background,
-      dividerColor: LightColor.lightGrey,
-      primaryTextTheme:
-          TextTheme(bodyText1: TextStyle(color: LightColor.titleTextColor)));
+    // Use scaffoldBackgroundColor and colorScheme.background instead of
+    // the removed backgroundColor parameter.
+    scaffoldBackgroundColor: LightColor.background,
+    primaryColor: LightColor.background,
+    cardTheme: CardThemeData(color: LightColor.background),
+    textTheme: TextTheme(bodyLarge: TextStyle(color: LightColor.black)),
+    iconTheme: IconThemeData(color: LightColor.iconColor),
+    // bottomApparcolor: LightColor.background,
+    dividerColor: LightColor.lightGrey,
+    primaryTextTheme:
+        TextTheme(bodyLarge: TextStyle(color: LightColor.titleTextColor)),
+    colorScheme: ColorScheme.light(
+      primary: LightColor.background,
+      background: LightColor.background,
+    ),
+  );
 
   static TextStyle titleStyle =
       const TextStyle(color: LightColor.titleTextColor, fontSize: 16);
@@ -46,3 +55,10 @@ class AppTheme {
     return MediaQuery.of(context).size.height;
   }
 }
+
+// Compatibility accessor so existing code using Theme.of(context).backgroundColor
+// keeps working.
+extension AppThemeDataExt on ThemeData {
+  Color get backgroundColor => colorScheme.background;
+}
+// ...existing code...

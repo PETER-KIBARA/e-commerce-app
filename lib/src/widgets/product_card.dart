@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_ecommerce_app/src/model/product.dart';
 import 'package:flutter_ecommerce_app/src/themes/light_color.dart';
 import 'package:flutter_ecommerce_app/src/widgets/title_text.dart';
@@ -8,33 +7,32 @@ import 'package:flutter_ecommerce_app/src/widgets/extentions.dart';
 class ProductCard extends StatelessWidget {
   final Product product;
   final ValueChanged<Product> onSelected;
-  ProductCard({Key key, this.product, this.onSelected}) : super(key: key);
 
-//   @override
-//   _ProductCardState createState() => _ProductCardState();
-// }
-
-// class _ProductCardState extends State<ProductCard> {
-//   Product product;
-//   @override
-//   void initState() {
-//     product = widget.product;
-//     super.initState();
-//   }
+  const ProductCard({
+    Key? key,
+    required this.product,
+    required this.onSelected,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: LightColor.background,
         borderRadius: BorderRadius.all(Radius.circular(20)),
         boxShadow: <BoxShadow>[
-          BoxShadow(color: Color(0xfff8f8f8), blurRadius: 15, spreadRadius: 10),
+          BoxShadow(
+            color: Color(0xfff8f8f8),
+            blurRadius: 15,
+            spreadRadius: 10,
+          ),
         ],
       ),
-      margin: EdgeInsets.symmetric(vertical: !product.isSelected ? 20 : 0),
+      margin: EdgeInsets.symmetric(
+        vertical: !product.isSelected ? 20 : 0,
+      ),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
@@ -43,18 +41,23 @@ class ProductCard extends StatelessWidget {
               top: 0,
               child: IconButton(
                 icon: Icon(
-                  product.isliked ? Icons.favorite : Icons.favorite_border,
-                  color:
-                      product.isliked ? LightColor.red : LightColor.iconColor,
+                  product.isliked
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                  color: product.isliked
+                      ? LightColor.red
+                      : LightColor.iconColor,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  // You can handle 'like' toggle here if needed
+                },
               ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SizedBox(height: product.isSelected ? 15 : 0),
+                if (product.isSelected) const SizedBox(height: 15),
                 Expanded(
                   child: Stack(
                     alignment: Alignment.center,
@@ -63,11 +66,10 @@ class ProductCard extends StatelessWidget {
                         radius: 40,
                         backgroundColor: LightColor.orange.withAlpha(40),
                       ),
-                      Image.asset(product.image)
+                      Image.asset(product.image),
                     ],
                   ),
                 ),
-                // SizedBox(height: 5),
                 TitleText(
                   text: product.name,
                   fontSize: product.isSelected ? 16 : 14,
@@ -78,7 +80,7 @@ class ProductCard extends StatelessWidget {
                   color: LightColor.orange,
                 ),
                 TitleText(
-                  text: product.price.toString(),
+                  text: '\$${product.price.toString()}',
                   fontSize: product.isSelected ? 18 : 16,
                 ),
               ],
@@ -88,7 +90,7 @@ class ProductCard extends StatelessWidget {
       ).ripple(() {
         Navigator.of(context).pushNamed('/detail');
         onSelected(product);
-      }, borderRadius: BorderRadius.all(Radius.circular(20))),
+      }, borderRadius: const BorderRadius.all(Radius.circular(20))),
     );
   }
 }

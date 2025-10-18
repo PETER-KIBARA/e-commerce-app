@@ -7,14 +7,16 @@ import 'package:flutter_ecommerce_app/src/widgets/BottomNavigationBar/bottom_nav
 import 'package:flutter_ecommerce_app/src/widgets/title_text.dart';
 import 'package:flutter_ecommerce_app/src/widgets/extentions.dart';
 
+// ...existing code...
 class MainPage extends StatefulWidget {
-  MainPage({Key key, this.title}) : super(key: key);
+  const MainPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _MainPageState createState() => _MainPageState();
 }
+
 
 class _MainPageState extends State<MainPage> {
   bool isHomePageSelected = true;
